@@ -10,16 +10,17 @@
   <body>
     <p>
       Hello, my name is
-      <span data-bind="text:name"/>
+      <span data-bind="text:fullname"></span>
     </p>
     <p>
-      <input type="text" data-bind="value:name"/>
+      <input type="text" data-bind="value:firstname"/>
+      <input type="text" data-bind="value:lastname"/>
     </p>    
   </body>
   <script>
     var vm = new ViewModel();
     setTimeout(function(){
-      vm.name("Bruno");
+      vm.firstname("Bruno");
     },2000);
     ko.applyBindings(vm);
   </script>
