@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"> </script>
+    <script src="index.js"> </script>
+    <title>
+      chock-out work
+    </title>
+  </head>
+  <body>
+    <p>
+      Hello, my name is
+      <span data-bind="text:name"/>
+    </p>
+    <p>
+      <input type="text" data-bind="value:name"/>
+    </p>    
+  </body>
+  <script>
+    var vm = new ViewModel();
+    setTimeout(function(){
+      vm.name("Bruno");
+    },2000);
+    ko.applyBindings(vm);
+  </script>
+</html>
