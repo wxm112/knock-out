@@ -16,12 +16,28 @@
       <input type="text" data-bind="value:firstname"/>
       <input type="text" data-bind="value:lastname"/>
     </p>    
+    <p>
+      <ul data-bind="foreach:countries">
+        <li data-bind="text:name"></li>
+      </ul>
+    </p>
+    <form data-bind="submit:addItem">
+      <p>Conversation:</p>
+      Type here:
+      <input type="text" data-bind='value:itemToAdd, valueUpdate: "afterkeydown" ' />
+      <button type="submit" data-bind="enable: itemToAdd().length > 0">Send</button>
+    </form>  
   </body>
   <script>
     var vm = new ViewModel();
     setTimeout(function(){
       vm.firstname("Bruno");
+      vm.countries()[1].name("The beautiful Kingdom of Sweden");
     },2000);
     ko.applyBindings(vm);
+  </script>
+  <script>
+    var lm = new ListModel(["Hi", "Hi", "How are you?"]);
+    ko.applyBindings(lm);
   </script>
 </html>
