@@ -8,25 +8,32 @@
     </title>
   </head>
   <body>
-    <p>
-      Hello, my name is
-      <span data-bind="text:fullname"></span>
-    </p>
-    <p>
-      <input type="text" data-bind="value:firstname"/>
-      <input type="text" data-bind="value:lastname"/>
-    </p>    
-    <p>
-      <ul data-bind="foreach:countries">
-        <li data-bind="text:name"></li>
-      </ul>
-    </p>
-    <form data-bind="submit:addItem">
-      <p>Conversation:</p>
-      Type here:
-      <input type="text" data-bind='value:itemToAdd, valueUpdate: "afterkeydown" ' />
-      <button type="submit" data-bind="enable: itemToAdd().length > 0">Send</button>
-    </form>  
+    <div id="view-model">
+      <p>
+        Hello, my name is
+        <span data-bind="text:fullname"></span>
+      </p>
+      <p>
+        <input type="text" data-bind="value:firstname"/>
+        <input type="text" data-bind="value:lastname"/>
+      </p>    
+      <p>
+        <ul data-bind="foreach:countries">
+          <li data-bind="text:name"></li>
+        </ul>
+      </p>
+    </div>
+    <div id="list-model">
+      <form data-bind="submit:addItem">
+        <p>Conversation:</p>
+        <ul data-bind="foreach:items">
+          <li data-bind="text:$data"></li>
+        </ul>
+        Type here:
+        <input type="text" data-bind='value:itemToAdd, valueUpdate: "afterkeydown" ' />
+        <button type="submit" data-bind="enable: itemToAdd().length > 0">Send</button>
+      </form>  
+    </div>
   </body>
   <script>
     var vm = new ViewModel();
@@ -34,10 +41,10 @@
       vm.firstname("Bruno");
       vm.countries()[1].name("The beautiful Kingdom of Sweden");
     },2000);
-    ko.applyBindings(vm);
+    ko.applyBindings(vm, document.getElementById("view-model"));
   </script>
   <script>
     var lm = new ListModel(["Hi", "Hi", "How are you?"]);
-    ko.applyBindings(lm);
+    ko.applyBindings(lm, document.getElementById("list-model"));
   </script>
 </html>
